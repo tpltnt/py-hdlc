@@ -8,5 +8,5 @@ class HDLCBaseFrame:
 
     _adress = None
     def __init__(self):
-        _adress = \x00
+        _adress = bytes(1)
 
