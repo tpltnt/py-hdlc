@@ -1,0 +1,6 @@
+import sys
+sys.path.append('../py-hdlc')
+import pytest
+
+def test_plain_init():
+    foo = new 
