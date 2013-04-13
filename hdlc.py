@@ -7,6 +7,10 @@ class HDLCBaseFrame:
     """
 
     _adress = None
+    _control = None
+    _fcs = None # frame check sequence
     def __init__(self):
-        _adress = bytes(1)
+        _adress = bytes(1)    # 8+ bits
+        _control = bytes(1)   # 8 or 16 bits
+        _fcs = bytes(2)       # 16 or 32 bits
 
