@@ -6,11 +6,12 @@ class HDLCBaseFrame:
     derive from this.
     """
 
-    _adress = None
+    _address = None
     _control = None
     _fcs = None
     def __init__(self):
-        _adress = bytes(1)    # 0,8 or 16 bits, depending on data link
+        _address = bytes(1)   # 0,8 or 16 bits, depending on data link
         _control = bytes(1)   # 8 or 16 bits
         _fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
+    # address handling
