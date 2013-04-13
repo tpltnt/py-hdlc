@@ -15,3 +15,6 @@ class HDLCBaseFrame:
         _fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
     # address handling
+    def parse_address(self, rawchunk):
+        if not isinstance(rawchunk,bytes):
+            raise TypeError("no bytes-object given")
