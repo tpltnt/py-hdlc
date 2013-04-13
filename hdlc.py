@@ -16,5 +16,10 @@ class HDLCBaseFrame:
 
     # address handling
     def parse_address(self, rawchunk):
+        """
+        Extract the address out of a given serial data chunk.
+        The input is expected to be an instance bytes(), since
+        Byte arrays can be modified while being parsed.
+        """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
