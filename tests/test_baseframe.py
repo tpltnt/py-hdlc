@@ -21,3 +21,8 @@ def test_parse_address_float_input(baseframe):
 def test_parse_address_bytearray_input(baseframe):
     with pytest.raises(TypeError):
         baseframe.parse_address(bytearray(1))
+
+
+def test_parse_address_too_short_input(baseframe):
+    with pytest.raises(ValueError):
+        baseframe.parse_address(bytes(2))
