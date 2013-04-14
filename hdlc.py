@@ -23,3 +23,5 @@ class HDLCBaseFrame:
         """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
+        if 2 <= len(rawchunk):
+            raise ValueError("to few bytes given")
