@@ -15,13 +15,18 @@ class HDLCBaseFrame:
         _fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
     # address handling
-    def parse_address(self, rawchunk):
+    def parse_address(self, rawchunk, stripped=True):
         """
         Extract the address out of a given serial data chunk.
         The input is expected to be an instance bytes(), since
         Byte arrays can be modified while being parsed.
+
+        Arguments:
+        - rawchunk: raw serial data chunk as bytes()
+        - stripped: True indicates that the flag-segment (0x7e) is stripped from the given rawchunk. False indicates that the flag segment is still contianed
         """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
-        if 2 <= len(rawchunk):
+        if (not stripped and 4 <= len(rawchunk) ) or (2 <= len(rawchunk)):
             raise ValueError("to few bytes given")
+
