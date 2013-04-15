@@ -34,7 +34,7 @@ class HDLCBaseFrame:
         if (126 == rawchunk[0]) and not (126 == rawchunk[len(rawchunk)-1]):
                 raise ValueError("closing flag corrupt / not 0x7e")
 
-        if (126 == rawchunk[0] and 126 == rawchunk[len(rawchunk)-1]
-            and 4 <= len(rawchunk) ) or (2 <= len(rawchunk)):
+        # minimal: no data field
+        if (not stripped and 4 <= len(rawchunk)) or (stripped and 2 <= len(rawchunk)):
             raise ValueError("to few bytes given")
 
