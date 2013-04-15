@@ -23,30 +23,30 @@ def test_parse_address_bytearray_input(baseframe):
         baseframe.parse_address(bytearray(1))
 
 
-def test_parse_address_too_stripped_short_input(baseframe):
+def test_parse_address_too_short_input1(baseframe):
+    """stripped input: just two zero-bytes"""
     with pytest.raises(ValueError):
         baseframe.parse_address(bytes(2))
 
 
-def test_parse_address_too_stripped_short_input2(baseframe):
-    """The stripped-flag is explicity set."""
+def test_parse_address_too_short_input2(baseframe):
+    """unstripped input: just four zero-bytes"""
     with pytest.raises(ValueError):
-        baseframe.parse_address(bytes(2), stripped=True)
+        baseframe.parse_address(bytes(4))
 
 
-def test_parse_address_too_stripped_short_input2(baseframe):
-    """The stripped-flag is explicity set."""
+def test_parse_address_too_short_input3(baseframe):
+    """unstripped input, 4 bytes, valid opening and closing flags"""
     with pytest.raises(ValueError):
-        baseframe.parse_address(bytes(2), stripped=True)
+        baseframe.parse_address(b'\x7e\x00\x00\x7e')
 
 
-def test_parse_address_too_unstripped_short_input(baseframe):
-    """The stripped-flag is explicity set."""
+def test_parse_address_too_short_input4(baseframe):
+    """unstripped input, 4 bytes, invalid opening flags"""
     with pytest.raises(ValueError):
-        baseframe.parse_address(bytes(4), stripped=False)
+        baseframe.parse_address(b'\x23\x00\x00\x7e')
 
-
-def test_parse_address_too_unstripped_short_input2(baseframe):
-    """The stripped-flag is explicity set."""
+def test_parse_address_too_short_input5(baseframe):
+    """unstripped input, 4 bytes, invalid closing flags"""
     with pytest.raises(ValueError):
-        baseframe.parse_address(b'\x7e\x00\x00\x7e', stripped=False)
+        baseframe.parse_address(b'\x7e\x00\x00\x42')
