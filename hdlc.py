@@ -36,7 +36,7 @@ class HDLCBaseFrame:
                 raise ValueError("closing flag corrupt / not 0x7e")
 
         # minimal: no data field
-        if (not stripped and len(rawchunk) <= 5) or (stripped and len(rawchunk) <= 3):
+        if (not stripped and len(rawchunk) <= 4) or (stripped and len(rawchunk) <= 2):
             raise ValueError("to few bytes given")
 
         # check address
