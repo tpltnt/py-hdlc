@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-class HDLCBaseFrame:
+class HDLCBaseFrame(object):
     """
     A basic HDLC frame with all common data fields. All other frame classes
     derive from this.
     """
 
-    _address = None
-    _control = None
-    _fcs = None
+    __address = None
+    __control = None
+    __fcs = None
     def __init__(self):
         _address = bytes(1)   # 0,8 or 16 bits, depending on data link
         _control = bytes(1)   # 8 or 16 bits
@@ -46,3 +46,20 @@ class HDLCBaseFrame:
             raise ValueError("given address length too short")
         if 2 < addresslength:
             raise ValueError("given address length too big")
+        if 1 == addresslength:
+            if stripped:
+                self.__address = bytes([rawchunk[0]])
+            else:
+                self.__address = bytes([rawchunk[1]])
+
+
+    def is_broadcast(self):
+        """Simple self-test for being a broadcast frame."""
+
+        if None == self._HDLCBaseFrame__address:
+            return False
+
+        if (len(self._HDLCBaseFrame__address) == 1) and (255 == self._HDLCBaseFrame__address[0]):
+            return True
+        else:
+            return False
