@@ -46,7 +46,13 @@ def test_parse_address_too_short_input4(baseframe):
     with pytest.raises(ValueError):
         baseframe.parse_address(b'\x23\x00\x00\x7e')
 
+
 def test_parse_address_too_short_input5(baseframe):
     """unstripped input, 4 bytes, invalid closing flags"""
     with pytest.raises(ValueError):
         baseframe.parse_address(b'\x7e\x00\x00\x42')
+
+
+def test_parse_address_address1(baseframe, unstrippedemptyunicastbasechunk):
+    with pytest.raises(TypeError):
+        baseframe.parse_address(b'\x7e\x00\x00\x00\x7e')
