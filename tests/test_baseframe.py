@@ -53,32 +53,6 @@ def test_parse_address_too_short_input5(baseframe):
         baseframe.parse_address(b'\x7e\x00\x00\x42')
 
 
-def test_parse_address_address1(baseframe, unstrippedemptyunicastbasechunk):
-    """unstripped input, address length as float"""
-    with pytest.raises(TypeError):
-        baseframe.parse_address(unstrippedemptyunicastbasechunk,
-                                addresslength=2.3)
-
-
-def test_parse_address_address2(baseframe, unstrippedemptyunicastbasechunk):
-    """unstripped input, address length as string"""
-    with pytest.raises(TypeError):
-        baseframe.parse_address(unstrippedemptyunicastbasechunk,
-                                addresslength='42')
-
-
-def test_parse_address_address3(baseframe, unstrippedemptyunicastbasechunk):
-    """unstripped input, explicit address length of 1 byte"""
-    baseframe.parse_address(unstrippedemptyunicastbasechunk, addresslength=1)
-
-
-def test_parse_address_address4(baseframe, unstrippedemptyunicastbasechunk):
-    """unstripped input, too large address length"""
-    with pytest.raises(ValueError):
-        baseframe.parse_address(unstrippedemptyunicastbasechunk,
-                                addresslength=3)
-
-
 def test_is_broadcast(baseframe, unstrippedemptyunicastbasechunk):
     """test frame generated with unicast address for having one"""
     baseframe.parse_address(unstrippedemptyunicastbasechunk)
