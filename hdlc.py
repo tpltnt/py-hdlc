@@ -67,7 +67,7 @@ class HDLCBaseFrame(object):
         if None == self._HDLCBaseFrame__address:
             return False
 
-        if (len(self._HDLCBaseFrame__address) == 1) and (255 == self._HDLCBaseFrame__address[0]):
+        if (1 == len(self._HDLCBaseFrame__address)) and (255 == self._HDLCBaseFrame__address[0]):
             return True
         else:
             return False
