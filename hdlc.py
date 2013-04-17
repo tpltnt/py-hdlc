@@ -62,9 +62,9 @@ class HDLCBaseFrame(object):
             raise ValueError("")
 
 
-    def is_broadcast(self):
-        """Simple self-test for being a broadcast frame. It may only be
-        used with a command frame."""
+    def is_allstation(self):
+        """Simple self-test for being a "all stattion" (=broadcast)
+        frame. It may only be used with a command frame."""
 
         if None == self._HDLCBaseFrame__address:
             return False
