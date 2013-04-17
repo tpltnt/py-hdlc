@@ -19,4 +19,4 @@ def chunk1():
 @pytest.fixture(scope="module")
 def chunk2():
     """create a minimal/empty 'no station' basechunk with valid flags"""
-    return b'\x7e\x00\x00\x00\x7e
+    return b'\x7e\x00\x00\x00\x7e'
