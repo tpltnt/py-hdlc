@@ -10,9 +10,9 @@ class HDLCBaseFrame(object):
     __control = None
     __fcs = None
     def __init__(self):
-        _address = bytes(1)   # assign "no station" by default
-        _control = bytes(1)   # 8 or 16 bits
-        _fcs = bytes(2)       # 16 or 32 bits frame check sequence
+        __address = bytes(1)   # assign "no station" by default
+        __control = bytes(1)   # 8 or 16 bits
+        __fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
     # address handling
     def parse_address(self, rawchunk):
@@ -78,7 +78,7 @@ class HDLCBaseFrame(object):
 
         if None == self._HDLCBaseFrame__address:
             return False
-        if (len(self._HDLCBaseFrame__address) == 1) and (0 == self._HDLCBaseFrame__address[0]):
+        if (1 == len(self._HDLCBaseFrame__address)) and (0 == self._HDLCBaseFrame__address[0]):
             return True
         else:
             return False
