@@ -53,7 +53,7 @@ def test_parse_address_too_short_input5(baseframe):
         baseframe.parse_address(b'\x7e\x00\x00\x42')
 
 
-def test_is_broadcast(baseframe, unstrippedemptyunicastbasechunk):
+def test_is_broadcast(baseframe, chunk1):
     """test frame generated with unicast address for having one"""
-    baseframe.parse_address(unstrippedemptyunicastbasechunk)
+    baseframe.parse_address(chunk1)
     assert baseframe.is_broadcast() is True
