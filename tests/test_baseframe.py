@@ -79,3 +79,23 @@ def test_is_allstation3(chunk2):
     baseframe = HDLCBaseFrame()
     baseframe.parse_address(chunk2)
     assert baseframe.is_allstation() is False
+
+
+def test_is_nostation1():
+    """'no station' should be the default address for a base frame."""
+    baseframe = HDLCBaseFrame()
+    assert baseframe.is_nostation() is True
+
+
+def test_is_nostation2(chunk1):
+    """parsing a all-station address should return False on is_nostation()"""
+    baseframe = HDLCBaseFrame()
+    baseframe.parse_address(chunk1)
+    assert baseframe.is_nostation() is False
+
+
+def test_is_nostation3(chunk2):
+    """parsing a no-station address should return True in is_nostation()"""
+    baseframe = HDLCBaseFrame()
+    baseframe.parse_address(chunk2)
+    assert baseframe.is_nostation() is True
