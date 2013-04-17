@@ -53,7 +53,17 @@ def test_parse_address_too_short_input5(baseframe):
         baseframe.parse_address(b'\x7e\x00\x00\x42')
 
 
-def test_is_allstation(baseframe, chunk1):
+def test_is_allstation1(baseframe, chunk1):
     """test frame generated with unicast/allstation address for having one"""
     baseframe.parse_address(chunk1)
     assert baseframe.is_allstation() is True
+
+
+def test_is_allstation2():
+    """vanilla object should not have a default address assigned"""
+    assert baseframe.isallstation() is False
+
+
+def test_is_allstation3(baseframe, chunk2):
+    baseframe.parse_address(chunk2)
+    assert baseframe.is_allstation() is False
