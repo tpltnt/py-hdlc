@@ -21,6 +21,8 @@ class HDLCBaseFrame(object):
         The input is expected to be an instance bytes(), since
         Byte arrays can be modified while being parsed. The address
         length is assumed to be 8 bits (1 byte) by default.
+        SDLC uses 8bit addresses, SS7 doesn't use the address field
+        at all.
         """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
