@@ -74,6 +74,16 @@ class HDLCBaseFrame(object):
         else:
             return False
 
+    def is_nostation(self):
+        """Simple self-test for being a "no station" frame. This is used
+        for testing and data stations should not react to it."""
+
+        if None == self._HDLCBaseFrame__address:
+            return False
+        if (len(self._HDLCBaseFrame__address) == 1) and (0 == self._HDLCBaseFrame__address[0]):
+            return True
+        else:
+            return False
 
     def set_address(self,address):
         """This method sets the address field. In the basic format, only
