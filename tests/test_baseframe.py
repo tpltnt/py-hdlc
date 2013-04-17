@@ -54,6 +54,6 @@ def test_parse_address_too_short_input5(baseframe):
 
 
 def test_is_allstation(baseframe, chunk1):
-    """test frame generated with unicast/allstattion address for having one"""
+    """test frame generated with unicast/allstation address for having one"""
     baseframe.parse_address(chunk1)
     assert baseframe.is_allstation() is True
