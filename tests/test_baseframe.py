@@ -60,10 +60,11 @@ def test_is_allstation1(baseframe, chunk1):
 
 
 def test_is_allstation2(baseframe):
-    """vanilla object should not have a default address assigned"""
+    """vanilla object should not have an allstation address assigned"""
     assert baseframe.is_allstation() is False
 
 
 def test_is_allstation3(baseframe, chunk2):
+    """"given a no-station address, testing is_allstation should yield False"""
     baseframe.parse_address(chunk2)
     assert baseframe.is_allstation() is False
