@@ -10,7 +10,7 @@ class HDLCBaseFrame(object):
     __control = None
     __fcs = None
     def __init__(self):
-        _address = bytes(1)   # 0,8 or 16 bits, depending on data link
+        _address = bytes(1)   # assign "no station" by default
         _control = bytes(1)   # 8 or 16 bits
         _fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
@@ -19,10 +19,7 @@ class HDLCBaseFrame(object):
         """
         Extract the address out of a given serial data chunk.
         The input is expected to be an instance bytes(), since
-        Byte arrays can be modified while being parsed. The address
-        length is assumed to be 8 bits (1 byte) by default.
-        SDLC uses 8bit addresses, SS7 doesn't use the address field
-        at all.
+        Byte arrays can be modified while being parsed.
         """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
@@ -49,6 +46,7 @@ class HDLCBaseFrame(object):
 
         # check address
         ## determine address length: MSB = 0 ->more frames to come
+        ## address can be 0, 8 or 16 bits
         __addresslength = 1
         if not isinstance(__addresslength,int):
             raise TypeError("address length of wrong type, only int allowed")
