@@ -12,5 +12,11 @@ def baseframe():
 
 @pytest.fixture(scope="module")
 def chunk1():
-    """create a minimal/empty unicast basechunk with valid flags"""
+    """create a minimal/empty 'all station' basechunk with valid flags"""
     return b'\x7e\xff\x00\x00\x7e'
+
+
+@pytest.fixture(scope="module")
+def chunk2():
+    """create a minimal/empty 'no station' basechunk with valid flags"""
+    return b'\x7e\x00\x00\x00\x7e
