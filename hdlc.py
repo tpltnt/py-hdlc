@@ -15,7 +15,7 @@ class HDLCBaseFrame(object):
         _fcs = bytes(2)       # 16 or 32 bits frame check sequence
 
     # address handling
-    def parse_address(self, rawchunk, addresslength=1):
+    def parse_address(self, rawchunk):
         """
         Extract the address out of a given serial data chunk.
         The input is expected to be an instance bytes(), since
@@ -48,15 +48,17 @@ class HDLCBaseFrame(object):
             __parsechunk = bytes(byteslist)
 
         # check address
-        if not isinstance(addresslength,int):
+        ## determine address length: MSB = 0 ->more frames to come
+        __addresslength = 1
+        if not isinstance(__addresslength,int):
             raise TypeError("address length of wrong type, only int allowed")
-        if 0 > addresslength:
+        if 0 > __addresslength:
             raise ValueError("given address length too short")
-        if 2 < addresslength:
+        if 2 < __addresslength:
             raise ValueError("given address length too big")
-        if 1 == addresslength:
+        if 1 == __addresslength:
             self.__address = bytes([__parsechunk[0]])
-        if 1 < addresslength and 127 <= __parsechunk[0]:
+        if 1 < __addresslength and 127 <= __parsechunk[0]:
             raise ValueError("")
 
 
@@ -76,5 +78,5 @@ class HDLCBaseFrame(object):
     def set_address(self,address):
         """This method sets the address field. In the basic format, only
         8bit addresses are allowed."""
-        if no instance(address,bytes):
+        if not instance(address,bytes):
             raise TypeError("given address has to be of type bytes")
