@@ -41,6 +41,12 @@ class HDLCBaseFrame(object):
         if (not stripped and len(rawchunk) <= 4) or (stripped and len(rawchunk) <= 2):
             raise ValueError("to few bytes given")
 
+        # strip given chunk for easier parsing
+        __parsechunk = rawchunk
+        if not stripped:
+            byteslist = [rawchunk[i] for i in range(1,len(rawchunk)-1)]
+            __parsechunk = bytes(byteslist)
+
         # check address
         if not isinstance(addresslength,int):
             raise TypeError("address length of wrong type, only int allowed")
@@ -49,10 +55,8 @@ class HDLCBaseFrame(object):
         if 2 < addresslength:
             raise ValueError("given address length too big")
         if 1 == addresslength:
-            if stripped:
-                self.__address = bytes([rawchunk[0]])
-            else:
-                self.__address = bytes([rawchunk[1]])
+            self.__address = bytes([__parsechunk[0]])
+
 
 
     def is_broadcast(self):
