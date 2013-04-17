@@ -56,11 +56,13 @@ class HDLCBaseFrame(object):
             raise ValueError("given address length too big")
         if 1 == addresslength:
             self.__address = bytes([__parsechunk[0]])
-
+        if 1 < addresslength and 127 <= __parsechunk[0]:
+            raise ValueError("")
 
 
     def is_broadcast(self):
-        """Simple self-test for being a broadcast frame."""
+        """Simple self-test for being a broadcast frame. It may only be
+        used with a command frame."""
 
         if None == self._HDLCBaseFrame__address:
             return False
@@ -69,3 +71,10 @@ class HDLCBaseFrame(object):
             return True
         else:
             return False
+
+
+    def set_address(self,address):
+        """This method sets the address field. In the basic format, only
+        8bit addresses are allowed."""
+        if no instance(address,bytes):
+            raise TypeError("given address has to be of type bytes")
