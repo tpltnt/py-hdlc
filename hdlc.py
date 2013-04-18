@@ -86,5 +86,9 @@ class HDLCBaseFrame(object):
     def set_address(self,address):
         """This method sets the address field. In the basic format, only
         8bit addresses are allowed."""
-        if not instance(address,bytes):
+        if not isinstance(address,bytes):
             raise TypeError("given address has to be of type bytes")
+        if isinstance(self,HDLCBaseFrame) and 1 != len(address):
+            raise ValueError("HDLC base frame only allows 8 bit addresses")
+
+        self.__address = address
