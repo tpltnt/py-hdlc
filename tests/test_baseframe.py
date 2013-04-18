@@ -126,3 +126,18 @@ def test_set_address4():
     baseframe = HDLCBaseFrame()
     baseframe.set_address(bytes([255]))
     assert baseframe.is_allstation() is True
+
+
+def test_set_address5():
+    """Setting a 16bit address on base frame should fail.
+    The ISO standard only allows 8bit for baseframe."""
+    baseframe = HDLCBaseFrame()
+    with pytest.raises(ValueError):
+        baseframe.set_address(bytes([23, 42]))
+
+
+#def test_set_address6():
+#    """address is allowed to be 16bit max"""
+#    baseframe = HDLCBaseFrame()
+#    with pytest.raises(ValueError):
+#        baseframe.set_address(bytes([23, 5, 42]))
