@@ -76,7 +76,6 @@ class HDLCBaseFrame(object):
         """Simple self-test for being a "no station" frame. This is used
         for testing and data stations should not react to it."""
 
-        print(self._HDLCBaseFrame__address)
         if None == self._HDLCBaseFrame__address:
             return False
         if (1 == len(self._HDLCBaseFrame__address)) and (0 == self._HDLCBaseFrame__address[0]):
