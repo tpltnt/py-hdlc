@@ -90,5 +90,7 @@ class HDLCBaseFrame(object):
             raise TypeError("given address has to be of type bytes")
         if isinstance(self,HDLCBaseFrame) and 1 != len(address):
             raise ValueError("HDLC base frame only allows 8 bit addresses")
+        if 2 < len(address):
+            raise ValueError("address must not exceed 16 bits")
 
         self.__address = address
