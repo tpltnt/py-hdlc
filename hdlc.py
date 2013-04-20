@@ -47,10 +47,11 @@ class HDLCBaseFrame(object):
         # check address
         ## determine address length: MSB = 0 ->more frames to come
         ## address can be 0(?), 8 or 16 bits
+        __addresslength =  0
         if 127 > __parsechunk[0]:
             # 8bit address
             __addresslength = 1
-        if 127 <= parsechunk[0]:
+        if 127 <= __parsechunk[0]:
             # 16bit
             print("nop")
         if not isinstance(__addresslength,int):
