@@ -52,6 +52,7 @@ class HDLCBaseFrame(object):
             __addresslength = 1
         if 127 <= parsechunk[0]:
             # 16bit
+            print("nop")
         if not isinstance(__addresslength,int):
             raise TypeError("address length of wrong type, only int allowed")
         if 0 > __addresslength:
