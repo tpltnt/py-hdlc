@@ -67,6 +67,8 @@ class HDLCBaseFrame(object):
         __parsestart += __addresslength
         # read control field
         ## MSB = 0 -> I-frame
+        if 127 <= __parsechunk[__parsestart]:
+            print("I frame found")
 
     def is_allstation(self):
         """Simple self-test for being a "all stattion" (=broadcast)
