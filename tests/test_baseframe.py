@@ -180,3 +180,17 @@ def test_get_control1():
     """test for retrieving correct type"""
     baseframe = HDLCBaseFrame()
     assert isinstance(baseframe.get_control(), bytes)
+
+
+def test_is_Iframe0():
+    """set I-frame bit and control for it."""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_control(bytes([42]))
+    assert baseframe.is_Iframe() is True
+
+
+def test_is_Iframe1():
+    """test non-I-frame for being one."""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_control(bytes([128]))
+    assert baseframe.is_Iframe() is False

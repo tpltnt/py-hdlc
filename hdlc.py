@@ -124,3 +124,15 @@ class HDLCBaseFrame(object):
     def get_control(self):
         """Return control field associated with the current frame."""
         return self.__control
+
+    def is_Iframe(self):
+        """Selftest for being an I-frame."""
+        print(self.__control[0])
+        # if no control field set, no type
+        if None == self.__control:
+            return False
+        # check actual internal value
+        if 128 > self.__control[0]:
+            return True
+        else:
+            return False
