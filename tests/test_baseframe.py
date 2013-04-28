@@ -167,3 +167,16 @@ def test_set_control2():
     baseframe = HDLCBaseFrame()
     with pytest.raises(ValueError):
         baseframe.set_control(bytes([5, 23, 42]))
+
+
+def test_get_control0():
+    """test for retrieving set control field."""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_control(bytes([42]))
+    assert bytes([42]) == baseframe.get_control()
+
+
+def test_get_control1():
+    """test for retrieving correct type"""
+    baseframe = HDLCBaseFrame()
+    assert isinstance(baseframe.get_control(), bytes)
