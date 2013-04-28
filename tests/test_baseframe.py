@@ -136,8 +136,14 @@ def test_set_address5():
         baseframe.set_address(bytes([23, 42]))
 
 
-#def test_set_address6():
-#    """address is allowed to be 16bit max"""
-#    baseframe = HDLCBaseFrame()
-#    with pytest.raises(ValueError):
-#        baseframe.set_address(bytes([23, 5, 42]))
+def test_get_address0():
+    """setting and retrieving an 8bit address on a baseframe."""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_address(bytes([42]))
+    assert bytes([42]) == baseframe.get_address()
+
+
+def test_get_address1():
+    """test for returning bytes()"""
+    baseframe = HDLCBaseFrame()
+    assert isinstance(baseframe.get_address(), bytes)

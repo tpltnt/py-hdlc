@@ -99,3 +99,8 @@ class HDLCBaseFrame(object):
             raise ValueError("address must not exceed 16 bits")
 
         self.__address = address
+
+
+    def get_address(self):
+        """Get address currently associated with the frame."""
+        return self.__address
