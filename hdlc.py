@@ -63,7 +63,7 @@ class HDLCBaseFrame(object):
                     raise ValueError("given address seems to be too long (more than 32 bits)")
 
         # store address internally by slicing out
-        self.__address = __parsechunk[0:__addresslength]
+        self.set_address( __parsechunk[0:__addresslength] )
 
 
     def is_allstation(self):
