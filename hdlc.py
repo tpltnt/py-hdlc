@@ -64,7 +64,7 @@ class HDLCBaseFrame(object):
         # store address internally by slicing out
         self.set_address( __parsechunk[__parsestart:__addresslength] )
 
-        __parsestart
+        __parsestart += __addresslength
         # read control field
         ## MSB = 0 -> I-frame
 
