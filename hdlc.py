@@ -118,3 +118,9 @@ class HDLCBaseFrame(object):
             raise TypeError("control bits have to be instance of bytes.")
         if 2 < len(ctrl):
             raise ValueError("too many control bits given (16 max)")
+        self.__control = ctrl
+
+
+    def get_control(self):
+        """Return control field associated with the current frame."""
+        return self.__control
