@@ -58,7 +58,7 @@ class HDLCBaseFrame(object):
             raise TypeError("address length of wrong type, only int allowed")
         if 0 > __addresslength:
             raise ValueError("given address length too short")
-        if 2 < __addresslength:
+        if 4 < __addresslength:
             raise ValueError("given address length too big")
         # store address internally by slicing out
         self.__address = __parsechunk[0:__addresslength]
