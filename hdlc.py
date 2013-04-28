@@ -44,11 +44,13 @@ class HDLCBaseFrame(object):
             byteslist = [rawchunk[i] for i in range(1,len(rawchunk)-1)]
             __parsechunk = bytes(byteslist)
 
+        __parsestart = 0  # index from where parsing section starts
+
         # read address
         ## determine address length: MSB = 0 ->more frames to come
         ## no upper bound to address fields (see ISO-13239:2002 4.2.2)
         __addresslength =  0
-        if 127 > __parsechunk[0] or 255 == __parsechunk[0]:
+        if 127 > __parsechunk[__parsestart] or 255 == __parsechunk[__parsestart]:
             # 8bit address
             __addresslength = 1
         else:
@@ -59,10 +61,12 @@ class HDLCBaseFrame(object):
             # check current byte
             while 127 <= __parsechunk[__addresslength-1]:
                 __addresslength += 1
-
         # store address internally by slicing out
-        self.set_address( __parsechunk[0:__addresslength] )
+        self.set_address( __parsechunk[__parsestart:__addresslength] )
 
+        __parsestart
+        # read control field
+        ## MSB = 0 -> I-frame
 
     def is_allstation(self):
         """Simple self-test for being a "all stattion" (=broadcast)
