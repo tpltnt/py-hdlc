@@ -46,13 +46,13 @@ class HDLCBaseFrame(object):
 
         # check address
         ## determine address length: MSB = 0 ->more frames to come
-        ## address can be 0(?), 8 or 16 bits
+        ## address can be 0(?), 8, 16 or 32 bits (ISO 13239 & BSI TR-03109-1)
         __addresslength =  0
         if 127 > __parsechunk[0] or 255 == __parsechunk[0]:
             # 8bit address
             __addresslength = 1
         if 127 <= __parsechunk[0]:
-            # 16bit
+            # more than 8 bits
             print("nop")
         if not isinstance(__addresslength,int):
             raise TypeError("address length of wrong type, only int allowed")
@@ -60,8 +60,8 @@ class HDLCBaseFrame(object):
             raise ValueError("given address length too short")
         if 2 < __addresslength:
             raise ValueError("given address length too big")
-        if 1 == __addresslength:
-            self.__address = bytes([__parsechunk[0]])
+        # store address internally by slicing out
+        self.__address = __parsechunk[0:__addresslength]
 
 
     def is_allstation(self):
