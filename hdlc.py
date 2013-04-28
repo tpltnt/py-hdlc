@@ -3,7 +3,7 @@
 class HDLCBaseFrame(object):
     """
     A basic HDLC frame with all common data fields. All other frame classes
-    derive from this.
+    are derived from here.
     """
 
     __address = None
