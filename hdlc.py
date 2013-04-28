@@ -44,22 +44,24 @@ class HDLCBaseFrame(object):
             byteslist = [rawchunk[i] for i in range(1,len(rawchunk)-1)]
             __parsechunk = bytes(byteslist)
 
-        # check address
+        # read address
         ## determine address length: MSB = 0 ->more frames to come
         ## address can be 0(?), 8, 16 or 32 bits (ISO 13239 & BSI TR-03109-1)
         __addresslength =  0
         if 127 > __parsechunk[0] or 255 == __parsechunk[0]:
             # 8bit address
             __addresslength = 1
-        if 127 <= __parsechunk[0]:
-            # more than 8 bits
-            print("nop")
-        if not isinstance(__addresslength,int):
-            raise TypeError("address length of wrong type, only int allowed")
-        if 0 > __addresslength:
-            raise ValueError("given address length too short")
-        if 4 < __addresslength:
-            raise ValueError("given address length too big")
+        else:
+            # more than 8bits (32 max)
+            # __addresslenght becomes "predicitve"
+            # -> will not be incremented when last byte found
+            __addresslength = 1
+            # check current byte
+            while 127 <= __parsechunk[__addresslength-1]:
+                __addresslength += 1
+                if 4 < __addresslength:
+                    raise ValueError("given address seems to be too long (more than 32 bits)")
+
         # store address internally by slicing out
         self.__address = __parsechunk[0:__addresslength]
 
