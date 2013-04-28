@@ -46,7 +46,7 @@ class HDLCBaseFrame(object):
 
         # read address
         ## determine address length: MSB = 0 ->more frames to come
-        ## address can be 0(?), 8, 16 or 32 bits (ISO 13239 & BSI TR-03109-1)
+        ## no upper bound to address fields (see ISO-13239:2002 4.2.2)
         __addresslength =  0
         if 127 > __parsechunk[0] or 255 == __parsechunk[0]:
             # 8bit address
@@ -59,8 +59,6 @@ class HDLCBaseFrame(object):
             # check current byte
             while 127 <= __parsechunk[__addresslength-1]:
                 __addresslength += 1
-                if 4 < __addresslength:
-                    raise ValueError("given address seems to be too long (more than 32 bits)")
 
         # store address internally by slicing out
         self.set_address( __parsechunk[0:__addresslength] )
