@@ -127,7 +127,6 @@ class HDLCBaseFrame(object):
 
     def is_Iframe(self):
         """Selftest for being an I-frame."""
-        print(self.__control[0])
         # if no control field set, no type
         if None == self.__control:
             return False
