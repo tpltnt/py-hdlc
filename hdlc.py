@@ -110,3 +110,11 @@ class HDLCBaseFrame(object):
     def get_address(self):
         """Get address currently associated with the frame."""
         return self.__address
+
+
+    def set_control(self,ctrl):
+        """Set control bits/segment by passing an instance of bytes."""
+        if not isinstance(ctrl,bytes):
+            raise TypeError("control bits have to be instance of bytes.")
+        if 2 < len(ctrl):
+            raise ValueError("too many control bits given (16 max)")

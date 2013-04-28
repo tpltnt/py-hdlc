@@ -147,3 +147,23 @@ def test_get_address1():
     """test for returning bytes()"""
     baseframe = HDLCBaseFrame()
     assert isinstance(baseframe.get_address(), bytes)
+
+
+def test_set_control0():
+    """test for passing a bytes instance."""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_control(bytes([42]))
+
+
+def test_set_control1():
+    """test for passing Bytes array."""
+    baseframe = HDLCBaseFrame()
+    with pytest.raises(TypeError):
+        baseframe.set_control(bytearray(1))
+
+
+def test_set_control2():
+    """test for setting 24 bits"""
+    baseframe = HDLCBaseFrame()
+    with pytest.raises(ValueError):
+        baseframe.set_control(bytes([5, 23, 42]))
