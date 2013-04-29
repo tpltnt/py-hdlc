@@ -205,6 +205,13 @@ def test_get_receive_sequence_number0():
 
 
 def test_get_receive_sequence_number1():
+    """test for extracting min. number"""
+    baseframe = HDLCBaseFrame()
+    baseframe.set_control(bytes([112]))
+    assert 0 == baseframe.get_receive_sequence_number()
+
+
+def test_get_receive_sequence_number2():
     """test for correct return type"""
     baseframe = HDLCBaseFrame()
     assert isinstance(baseframe.get_receive_sequence_number(), int)
