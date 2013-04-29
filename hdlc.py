@@ -141,11 +141,11 @@ class HDLCBaseFrame(object):
         if 1 == len(self.__control):
             # 8 bit control field
             ctrlbits = self.__control[0]
-            if 2 != ctrlbits.bit_length:
-                # ints by default use 2 bytes & grow as needed
-                raise ValueError("internal control field doesn't have the expected 16 bits")
+            # masking up to (expected) 8 bits
+            if 8 < ctrlbits.bit_length():
+                raise ValueError("internal control field longer than 8 bits")
             # mask out all but lowest (rightmost) 3 bits
-            mask = ~(\xfff8)
+            mask = ~0xf8
             seqbits = ctrlbits & mask
             return int(seqbits)
         else:

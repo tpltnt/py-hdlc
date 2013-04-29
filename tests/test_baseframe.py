@@ -194,3 +194,17 @@ def test_is_Iframe1():
     baseframe = HDLCBaseFrame()
     baseframe.set_control(bytes([128]))
     assert baseframe.is_Iframe() is False
+
+
+def test_get_receive_sequence_number0():
+    """test for extracting max number"""
+    baseframe = HDLCBaseFrame()
+    # 119 = 0x77 = 01110111
+    baseframe.set_control(bytes([119]))
+    assert 7 == baseframe.get_receive_sequence_number()
+
+
+def test_get_receive_sequence_number1():
+    """test for correct return type"""
+    baseframe = HDLCBaseFrame()
+    assert isinstance(baseframe.get_receive_sequence_number(), int)
