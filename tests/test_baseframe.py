@@ -73,6 +73,12 @@ def test_parse_address8(chunk3):
         baseframe.parse_address(chunk3)
 
 
+def test_parse_address9(chunk4):
+    """parse I-frame control field with 1 byte address"""
+    baseframe = BaseFrame()
+    baseframe.parse_address(chunk4)
+
+
 def test_is_allstation1(chunk1):
     """test frame generated with unicast/allstation address for having one"""
     baseframe = BaseFrame()

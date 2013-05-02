@@ -29,3 +29,10 @@ def chunk2():
 def chunk3():
     """basic 2byte address field basechunk"""
     return b'\x7e\xf8\x01\x00\x7e'
+
+
+@pytest.fixture(scope="module")
+def chunk4():
+    """basic stripped I-frame, 1 byte address"""
+    # 1 byte address, 2 bytes control field
+    return b'\x01\xf8\x00'
