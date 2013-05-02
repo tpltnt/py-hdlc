@@ -8,25 +8,28 @@ def test_plain_init():
     foo = BaseFrame()
 
 
-def test_parse_address_string_input():
+def test_parse_address1():
+    """test for rejecting strings"""
     baseframe = BaseFrame()
     with pytest.raises(TypeError):
         baseframe.parse_address('test')
 
 
-def test_parse_address_float_input():
+def test_parse_address2():
+    """test for rejecting float input"""
     baseframe = BaseFrame()
     with pytest.raises(TypeError):
         baseframe.parse_address(2.3)
 
 
-def test_parse_address_bytearray_input():
+def test_parse_address3():
+    """test for too short bytearray """
     baseframe = BaseFrame()
     with pytest.raises(TypeError):
         baseframe.parse_address(bytearray(1))
 
 
-def test_parse_address_too_short_input1():
+def test_parse_address4():
     """stripped input: just two zero-bytes"""
     baseframe = BaseFrame()
     with pytest.raises(ValueError):
@@ -40,21 +43,21 @@ def test_parse_address_too_short_input1():
 #        baseframe.parse_address(bytes(4))
 
 
-def test_parse_address_too_short_input3():
+def test_parse_address5():
     """unstripped input, 4 bytes, valid opening and closing flags"""
     baseframe = BaseFrame()
     with pytest.raises(ValueError):
         baseframe.parse_address(b'\x7e\x00\x00\x7e')
 
 
-def test_parse_address_too_short_input4():
+def test_parse_address6():
     """unstripped input, 4 bytes, invalid opening flags"""
     baseframe = BaseFrame()
     with pytest.raises(ValueError):
         baseframe.parse_address(b'\x23\x00\x00\x7e')
 
 
-def test_parse_address_too_short_input5():
+def test_parse_address7():
     """unstripped input, 4 bytes, invalid closing flags"""
     baseframe = BaseFrame()
     with pytest.raises(ValueError):
