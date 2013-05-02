@@ -85,7 +85,7 @@ class BaseFrame(object):
         Simple self-test for being a "all stattion" (=broadcast)
         frame. It may only be used with a command frame.
 
-        :returns: bool -- truth value if test for having an "all station" address
+        :returns: bool -- truth value of test for having an "all station" address
         """
 
         if None == self._BaseFrame__address:
@@ -97,8 +97,12 @@ class BaseFrame(object):
             return False
 
     def is_nostation(self):
-        """Simple self-test for being a "no station" frame. This is used
-        for testing and data stations should not react to it."""
+        """
+        Simple self-test for being a "no station" frame. This is used
+        for testing and data stations should not react to it.
+
+        :returns: bool -- truth value of test for having a "no station" address
+        """
 
         if None == self._BaseFrame__address:
             return False
