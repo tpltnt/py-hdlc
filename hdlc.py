@@ -9,6 +9,7 @@ class BaseFrame(object):
     .. todo::
 
     * r/w all parts of control field
+
     """
 
     __address = None
@@ -36,6 +37,7 @@ class BaseFrame(object):
         * I-Frame parsing
         * S-Frame parsing
         * U-Frame parsing
+
         """
         if not isinstance(rawchunk, bytes):
             raise TypeError("no bytes-object given")
@@ -92,6 +94,7 @@ class BaseFrame(object):
         frame. It may only be used with a command frame.
 
         :returns: bool -- truth value of having an "all station" address
+
         """
 
         if None == self._BaseFrame__address:
@@ -108,6 +111,7 @@ class BaseFrame(object):
         for testing and data stations should not react to it.
 
         :returns: bool -- truth value of test for having a "no station" address
+
         """
 
         if None == self._BaseFrame__address:
@@ -126,6 +130,7 @@ class BaseFrame(object):
         :param address: address byte(s) to be set
         :type address: bytes
         :raises: TypeError, ValueError
+
         """
         if not isinstance(address, bytes):
             raise TypeError("given address has to be of type bytes")
@@ -150,6 +155,7 @@ class BaseFrame(object):
         :param ctrl: control bits to be set (in byte cunks)
         :type ctrl: bytes
         :raises: TypeError,ValueError
+
         """
         if not isinstance(ctrl, bytes):
             raise TypeError("control bits have to be instance of bytes.")
@@ -186,6 +192,7 @@ class BaseFrame(object):
 
         :returns: int -- receive sequence number
         :raises: ValueError
+
         """
         if 1 == len(self.__control):
             # 8 bit control field
