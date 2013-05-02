@@ -97,9 +97,6 @@ class BaseFrame(object):
 
         """
 
-        if None == self._BaseFrame__address:
-            return False
-
         if (1 == len(self._BaseFrame__address)) and (255 == self._BaseFrame__address[0]):
             return True
         else:
