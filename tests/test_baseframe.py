@@ -212,24 +212,3 @@ def test_is_IFrame1():
     baseframe = BaseFrame()
     baseframe.set_control(bytes([128]))
     assert baseframe.is_IFrame() is False
-
-
-def test_get_receive_sequence_number0():
-    """test for extracting max number"""
-    baseframe = BaseFrame()
-    # 119 = 0x77 = 01110111
-    baseframe.set_control(bytes([119]))
-    assert 7 == baseframe.get_receive_sequence_number()
-
-
-def test_get_receive_sequence_number1():
-    """test for extracting min. number"""
-    baseframe = BaseFrame()
-    baseframe.set_control(bytes([112]))
-    assert 0 == baseframe.get_receive_sequence_number()
-
-
-def test_get_receive_sequence_number2():
-    """test for correct return type"""
-    baseframe = BaseFrame()
-    assert isinstance(baseframe.get_receive_sequence_number(), int)
