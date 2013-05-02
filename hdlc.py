@@ -51,8 +51,7 @@ class BaseFrame(object):
                 raise ValueError("closing flag corrupt / not 0x7e")
 
         # minimal: no data field
-        if (not stripped and len(rawchunk) <= 4)
-        or (stripped and len(rawchunk) <= 2):
+        if (not stripped and len(rawchunk) <= 4) or (stripped and len(rawchunk) <= 2):
             raise ValueError("to few bytes given")
 
         # strip given chunk for easier parsing
@@ -67,8 +66,7 @@ class BaseFrame(object):
         ## determine address length: MSB = 0 ->more frames to come
         ## no upper bound to address fields (see ISO-13239:2002 4.2.2)
         __addresslength = 0
-        if 127 > __parsechunk[__parsestart]
-        or 255 == __parsechunk[__parsestart]:
+        if 127 > __parsechunk[__parsestart] or 255 == __parsechunk[__parsestart]:
             # 8bit address
             __addresslength = 1
         else:
@@ -99,8 +97,7 @@ class BaseFrame(object):
         if None == self._BaseFrame__address:
             return False
 
-        if (1 == len(self._BaseFrame__address))
-        and (255 == self._BaseFrame__address[0]):
+        if (1 == len(self._BaseFrame__address)) and (255 == self._BaseFrame__address[0]):
             return True
         else:
             return False
