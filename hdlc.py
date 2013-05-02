@@ -20,6 +20,16 @@ class BaseFrame(object):
         Extract the address out of a given serial data chunk.
         The input is expected to be an instance bytes(), since
         Byte arrays can be modified while being parsed.
+
+        :param rawchunk: raw bytes chunk as received by serial device
+        :type rawchunk: bytes
+        :raises: TypeError, ValueError
+
+        .. todo::
+
+        * I-Frame parsing
+        * S-Frame parsing
+        * U-Frame parsing
         """
         if not isinstance(rawchunk,bytes):
             raise TypeError("no bytes-object given")
