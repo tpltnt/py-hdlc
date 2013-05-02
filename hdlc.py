@@ -141,7 +141,13 @@ class BaseFrame(object):
 
 
     def set_control(self,ctrl):
-        """Set control bits/segment by passing an instance of bytes."""
+        """
+        Set control bits/segment by passing an instance of bytes.
+
+        :param ctrl: control bits to be set (in byte cunks)
+        :type ctrl: bytes
+        :raises: TypeError,ValueError
+        """
         if not isinstance(ctrl,bytes):
             raise TypeError("control bits have to be instance of bytes.")
         if 2 < len(ctrl):
