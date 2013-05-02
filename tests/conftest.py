@@ -4,12 +4,6 @@ import pytest
 from hdlc import BaseFrame
 
 
-#@pytest.fixture(scope="module")
-#def baseframe():
-#    """create a HDLCBaseFrame-object"""
-#    return HDLCBaseFrame()
-
-
 @pytest.fixture(scope="module")
 def chunk1():
     """create a minimal/empty 'all station' basechunk with valid flags"""
