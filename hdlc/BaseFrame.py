@@ -114,8 +114,6 @@ class BaseFrame(object):
 
         """
 
-        if None == self._BaseFrame__address:
-            return False
         # length doesn't matter, just first octet has to be zeros
         if (0 == self._BaseFrame__address[0]):
             return True
