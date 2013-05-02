@@ -172,9 +172,6 @@ class BaseFrame(object):
 
         :returns: bool -- truth value of being an I-frame
         """
-        # if no control field set, no type
-        if None == self.__control:
-            return False
         # check actual internal value
         if 128 > self.__control[0]:
             return True
