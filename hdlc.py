@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-class HDLCBaseFrame(object):
+class BaseFrame(object):
     """
     A basic HDLC frame with all common data fields. All other frame classes
-    are derived from here.
+    are derived from this.
     """
 
     __address = None
@@ -74,10 +74,10 @@ class HDLCBaseFrame(object):
         """Simple self-test for being a "all stattion" (=broadcast)
         frame. It may only be used with a command frame."""
 
-        if None == self._HDLCBaseFrame__address:
+        if None == self._BaseFrame__address:
             return False
 
-        if (1 == len(self._HDLCBaseFrame__address)) and (255 == self._HDLCBaseFrame__address[0]):
+        if (1 == len(self._BaseFrame__address)) and (255 == self._BaseFrame__address[0]):
             return True
         else:
             return False
@@ -86,10 +86,10 @@ class HDLCBaseFrame(object):
         """Simple self-test for being a "no station" frame. This is used
         for testing and data stations should not react to it."""
 
-        if None == self._HDLCBaseFrame__address:
+        if None == self._BaseFrame__address:
             return False
         # length doesn't matter, just first octet has to be zeros
-        if (0 == self._HDLCBaseFrame__address[0]):
+        if (0 == self._BaseFrame__address[0]):
             return True
         else:
             return False
@@ -99,7 +99,7 @@ class HDLCBaseFrame(object):
         or 16bit. In the basic format, only 8bit addresses are allowed."""
         if not isinstance(address,bytes):
             raise TypeError("given address has to be of type bytes")
-        if isinstance(self,HDLCBaseFrame) and 1 != len(address):
+        if isinstance(self,BaseFrame) and 1 != len(address):
             raise ValueError("HDLC base frame only allows 8 bit addresses")
         if 2 < len(address):
             raise ValueError("address must not exceed 16 bits")

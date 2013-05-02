@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../py-hdlc')
 import pytest
-from hdlc import HDLCBaseFrame
+from hdlc import BaseFrame
 
 
 #@pytest.fixture(scope="module")
