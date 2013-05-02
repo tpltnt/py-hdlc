@@ -1,7 +1,7 @@
 import sys
-sys.path.append('../py-hdlc')
+sys.path.append('../py-hdlc/hdlc')
 import pytest
-from hdlc import BaseFrame
+from BaseFrame import BaseFrame
 
 
 def test_plain_init():
