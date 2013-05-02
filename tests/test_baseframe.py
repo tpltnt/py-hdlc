@@ -64,6 +64,15 @@ def test_parse_address7():
         baseframe.parse_address(b'\x7e\x00\x00\x42')
 
 
+def test_parse_address8(chunk3):
+    """unstripped input, 5 bytes, 2byte address
+    baseframe only allows 8 bits
+    """
+    baseframe = BaseFrame()
+    with pytest.raises(ValueError):
+        baseframe.parse_address(chunk3)
+
+
 def test_is_allstation1(chunk1):
     """test frame generated with unicast/allstation address for having one"""
     baseframe = BaseFrame()
