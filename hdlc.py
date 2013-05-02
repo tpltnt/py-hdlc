@@ -159,7 +159,7 @@ class BaseFrame(object):
         """
         Return control field associated with the current frame.
 
-        :returns: bytes -- control fied of current frame
+        :returns: bytes -- control field
         """
         return self.__control
 
@@ -179,7 +179,12 @@ class BaseFrame(object):
             return False
 
     def get_receive_sequence_number(self):
-        """Extract transmit receive sequence number from control field."""
+        """
+        Extract transmit receive sequence number from control field.
+
+        :returns: int -- receive sequence number
+        :raises: ValueError
+        """
         if 1 == len(self.__control):
             # 8 bit control field
             ctrlbits = self.__control[0]
