@@ -182,18 +182,18 @@ def test_get_control1():
     assert isinstance(baseframe.get_control(), bytes)
 
 
-def test_is_Iframe0():
+def test_is_IFrame0():
     """set I-frame bit and control for it."""
     baseframe = BaseFrame()
     baseframe.set_control(bytes([42]))
-    assert baseframe.is_Iframe() is True
+    assert baseframe.is_IFrame() is True
 
 
-def test_is_Iframe1():
+def test_is_IFrame1():
     """test non-I-frame for being one."""
     baseframe = BaseFrame()
     baseframe.set_control(bytes([128]))
-    assert baseframe.is_Iframe() is False
+    assert baseframe.is_IFrame() is False
 
 
 def test_get_receive_sequence_number0():
