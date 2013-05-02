@@ -5,6 +5,10 @@ class BaseFrame(object):
     """
     A basic HDLC frame with all common data fields. All other frame classes
     are derived from this.
+
+    .. todo::
+
+    * r/w all parts of control field
     """
 
     __address = None
