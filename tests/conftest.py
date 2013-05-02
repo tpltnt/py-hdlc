@@ -3,7 +3,14 @@ sys.path.append('../py-hdlc')
 import pytest
 from hdlc import BaseFrame
 
+"""
+general frame format:
 
++----+-------+-------+----+---+----+
+|flag|address|control|data|fcs|flag|
++----+-------+-------+----+---+----+
+
+"""
 @pytest.fixture(scope="module")
 def chunk1():
     """create a minimal/empty 'all station' basechunk with valid flags"""
