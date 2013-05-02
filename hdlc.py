@@ -113,8 +113,14 @@ class BaseFrame(object):
             return False
 
     def set_address(self,address):
-        """This method sets the address field. An address can consist of 0, 8
-        or 16bit. In the basic format, only 8bit addresses are allowed."""
+        """
+        This method sets the address field. An address can consist of 0, 8
+        or 16bit. In the basic format, only 8bit addresses are allowed.
+
+        :param address: address byte(s) to be set
+        :type address: bytes
+        :raises: TypeError, ValueError
+        """
         if not isinstance(address,bytes):
             raise TypeError("given address has to be of type bytes")
         if isinstance(self,BaseFrame) and 1 != len(address):
