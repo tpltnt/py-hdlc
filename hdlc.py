@@ -81,8 +81,12 @@ class BaseFrame(object):
             print("I frame found")
 
     def is_allstation(self):
-        """Simple self-test for being a "all stattion" (=broadcast)
-        frame. It may only be used with a command frame."""
+        """
+        Simple self-test for being a "all stattion" (=broadcast)
+        frame. It may only be used with a command frame.
+
+        :returns: bool -- truth value if test for having an "all station" address
+        """
 
         if None == self._BaseFrame__address:
             return False
