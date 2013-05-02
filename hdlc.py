@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 class BaseFrame(object):
     """
     A basic HDLC frame with all common data fields. All other frame classes
@@ -9,6 +10,7 @@ class BaseFrame(object):
     __address = None
     __control = None
     __fcs = None
+
     def __init__(self):
         self.__address = bytes(1)   # assign "no station" by default
         self.__control = bytes(1)   # 8 or 16 bits
@@ -31,7 +33,7 @@ class BaseFrame(object):
         * S-Frame parsing
         * U-Frame parsing
         """
-        if not isinstance(rawchunk,bytes):
+        if not isinstance(rawchunk, bytes):
             raise TypeError("no bytes-object given")
 
         stripped = True
@@ -45,13 +47,14 @@ class BaseFrame(object):
                 raise ValueError("closing flag corrupt / not 0x7e")
 
         # minimal: no data field
-        if (not stripped and len(rawchunk) <= 4) or (stripped and len(rawchunk) <= 2):
+        if (not stripped and len(rawchunk) <= 4)
+        or (stripped and len(rawchunk) <= 2):
             raise ValueError("to few bytes given")
 
         # strip given chunk for easier parsing
         __parsechunk = rawchunk
         if not stripped:
-            byteslist = [rawchunk[i] for i in range(1,len(rawchunk)-1)]
+            byteslist = [rawchunk[i] for i in range(1, len(rawchunk)-1)]
             __parsechunk = bytes(byteslist)
 
         __parsestart = 0  # index from where parsing section starts
@@ -59,8 +62,9 @@ class BaseFrame(object):
         # read address
         ## determine address length: MSB = 0 ->more frames to come
         ## no upper bound to address fields (see ISO-13239:2002 4.2.2)
-        __addresslength =  0
-        if 127 > __parsechunk[__parsestart] or 255 == __parsechunk[__parsestart]:
+        __addresslength = 0
+        if 127 > __parsechunk[__parsestart]
+        or 255 == __parsechunk[__parsestart]:
             # 8bit address
             __addresslength = 1
         else:
@@ -72,7 +76,7 @@ class BaseFrame(object):
             while 127 <= __parsechunk[__addresslength-1]:
                 __addresslength += 1
         # store address internally by slicing out
-        self.set_address( __parsechunk[__parsestart:__addresslength] )
+        self.set_address(__parsechunk[__parsestart:__addresslength])
 
         __parsestart += __addresslength
         # read control field
@@ -85,13 +89,14 @@ class BaseFrame(object):
         Simple self-test for being a "all stattion" (=broadcast)
         frame. It may only be used with a command frame.
 
-        :returns: bool -- truth value of test for having an "all station" address
+        :returns: bool -- truth value of having an "all station" address
         """
 
         if None == self._BaseFrame__address:
             return False
 
-        if (1 == len(self._BaseFrame__address)) and (255 == self._BaseFrame__address[0]):
+        if (1 == len(self._BaseFrame__address))
+        and (255 == self._BaseFrame__address[0]):
             return True
         else:
             return False
@@ -112,7 +117,7 @@ class BaseFrame(object):
         else:
             return False
 
-    def set_address(self,address):
+    def set_address(self, address):
         """
         This method sets the address field. An address can consist of 0, 8
         or 16bit. In the basic format, only 8bit addresses are allowed.
@@ -121,15 +126,13 @@ class BaseFrame(object):
         :type address: bytes
         :raises: TypeError, ValueError
         """
-        if not isinstance(address,bytes):
+        if not isinstance(address, bytes):
             raise TypeError("given address has to be of type bytes")
-        if isinstance(self,BaseFrame) and 1 != len(address):
+        if isinstance(self, BaseFrame) and 1 != len(address):
             raise ValueError("HDLC base frame only allows 8 bit addresses")
         if 2 < len(address):
             raise ValueError("address must not exceed 16 bits")
-
         self.__address = address
-
 
     def get_address(self):
         """
@@ -139,8 +142,7 @@ class BaseFrame(object):
         """
         return self.__address
 
-
-    def set_control(self,ctrl):
+    def set_control(self, ctrl):
         """
         Set control bits/segment by passing an instance of bytes.
 
@@ -148,12 +150,11 @@ class BaseFrame(object):
         :type ctrl: bytes
         :raises: TypeError,ValueError
         """
-        if not isinstance(ctrl,bytes):
+        if not isinstance(ctrl, bytes):
             raise TypeError("control bits have to be instance of bytes.")
         if 2 < len(ctrl):
             raise ValueError("too many control bits given (16 max)")
         self.__control = ctrl
-
 
     def get_control(self):
         """
