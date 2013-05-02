@@ -156,11 +156,19 @@ class BaseFrame(object):
 
 
     def get_control(self):
-        """Return control field associated with the current frame."""
+        """
+        Return control field associated with the current frame.
+
+        :returns: bytes -- control fied of current frame
+        """
         return self.__control
 
-    def is_Iframe(self):
-        """Selftest for being an I-frame."""
+    def is_IFrame(self):
+        """
+        Selftest for being an I-frame.
+
+        :returns: bool -- truth value of being an I-frame
+        """
         # if no control field set, no type
         if None == self.__control:
             return False
