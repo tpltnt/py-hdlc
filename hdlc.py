@@ -132,7 +132,11 @@ class BaseFrame(object):
 
 
     def get_address(self):
-        """Get address currently associated with the frame."""
+        """
+        Get address currently associated with the frame.
+
+        :returns: bytes -- current address
+        """
         return self.__address
 
 
