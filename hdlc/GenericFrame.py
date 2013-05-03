@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 
 
-class BaseFrame(object):
+class GenericFrame(object):
     """
-    A basic HDLC frame with all common data fields. All other frame classes
-    are derived from this.
-
-    .. todo::
-
-    * r/w all parts of control field
-
+    A generic minimal HDLC frame with all common data fields. All other
+    frame classes are derived from this.
     """
 
     __address = None
@@ -19,7 +14,7 @@ class BaseFrame(object):
     def __init__(self):
         self.__address = bytes(1)   # assign "no station" by default
         self.__control = bytes(1)   # 8 or 16 bits
-        self.__fcs = bytes(2)       # 16 or 32 bits frame check sequence
+        self.__fcs = bytes(1)       # 16 or 32 bits frame check sequence
 
     # address handling
     def parse_address(self, rawchunk):
@@ -97,7 +92,7 @@ class BaseFrame(object):
 
         """
 
-        if (1 == len(self._BaseFrame__address)) and (255 == self._BaseFrame__address[0]):
+        if (1 == len(self._GenericFrame__address)) and (255 == self._GenericFrame__address[0]):
             return True
         else:
             return False
@@ -112,15 +107,15 @@ class BaseFrame(object):
         """
 
         # length doesn't matter, just first octet has to be zeros
-        if (0 == self._BaseFrame__address[0]):
+        if (0 == self._GenericFrame__address[0]):
             return True
         else:
             return False
 
     def set_address(self, address):
         """
-        This method sets the address field. An address can consist of 0, 8
-        or 16bit. In the basic format, only 8bit addresses are allowed.
+        This method sets the address field. Common values are 0, 8, 16 or
+        32 bit long.
 
         :param address: address byte(s) to be set
         :type address: bytes
@@ -129,10 +124,6 @@ class BaseFrame(object):
         """
         if not isinstance(address, bytes):
             raise TypeError("given address has to be of type bytes")
-        if isinstance(self, BaseFrame) and 1 != len(address):
-            raise ValueError("HDLC base frame only allows 8 bit addresses")
-        if 2 < len(address):
-            raise ValueError("address must not exceed 16 bits")
         self.__address = address
 
     def get_address(self):
@@ -149,13 +140,11 @@ class BaseFrame(object):
 
         :param ctrl: control bits to be set (in byte cunks)
         :type ctrl: bytes
-        :raises: TypeError,ValueError
+        :raises: TypeError
 
         """
         if not isinstance(ctrl, bytes):
             raise TypeError("control bits have to be instance of bytes.")
-        if 2 < len(ctrl):
-            raise ValueError("too many control bits given (16 max)")
         self.__control = ctrl
 
     def get_control(self):
