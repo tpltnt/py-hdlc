@@ -16,6 +16,10 @@ which means you must also provide the source code of your program if it is
 accessed through a network (and not only direct users). If you want to deviate
 from this, please contact me and we can work something out.
 
+dependencies
+============
+* [crcmod](https://pypi.python.org/pypi/crcmod) for FCS/CRC calculation
+
 references
 ==========
 * [ISO 13239](http://webstore.iec.ch/Webstore/webstore.nsf/ArtNum_PK/40875?OpenDocument)
