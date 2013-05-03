@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../py-hdlc')
 import pytest
-from hdlc import BaseFrame
+#from hdlc import BaseFrame
 
 """
 general frame format:
