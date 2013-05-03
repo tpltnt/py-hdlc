@@ -130,14 +130,6 @@ def test_set_address4():
     assert genericframe.is_allstation() is True
 
 
-def test_set_address5():
-    """Setting a 16bit address on base frame should fail.
-    The ISO standard only allows 8bit for genericframe."""
-    genericframe = GenericFrame()
-    with pytest.raises(ValueError):
-        genericframe.set_address(bytes([23, 42]))
-
-
 def test_get_address0():
     """setting and retrieving an 8bit address on a genericframe."""
     genericframe = GenericFrame()
@@ -162,13 +154,6 @@ def test_set_control1():
     genericframe = GenericFrame()
     with pytest.raises(TypeError):
         genericframe.set_control(bytearray(1))
-
-
-def test_set_control2():
-    """test for setting 24 bits"""
-    genericframe = GenericFrame()
-    with pytest.raises(ValueError):
-        genericframe.set_control(bytes([5, 23, 42]))
 
 
 def test_get_control0():
