@@ -18,4 +18,5 @@ from this, please contact me and we can work something out.
 
 references
 ==========
+* [ISO 13239](http://webstore.iec.ch/Webstore/webstore.nsf/ArtNum_PK/40875?OpenDocument)
 * [wikipedia](https://en.wikipedia.org/wiki/HDLC)
