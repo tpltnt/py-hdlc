@@ -1,6 +1,6 @@
-from BaseFrame import BaseFrame
+from GenericFrame import GenericFrame
 
-class IFrame(BaseFrame):
+class IFrame(GenericFrame):
     """
     A HDLC I-Frame implementation
 
@@ -21,9 +21,9 @@ class IFrame(BaseFrame):
         :raises: ValueError
 
         """
-        if 1 == len(self._BaseFrame__control):
+        if 1 == len(self._GenericFrame__control):
             # 8 bit control field
-            ctrlbits = self._BaseFrame__control[0]
+            ctrlbits = self._GenericFrame__control[0]
             # masking up to (expected) 8 bits
             if 8 < ctrlbits.bit_length():
                 raise ValueError("internal control field longer than 8 bits")
