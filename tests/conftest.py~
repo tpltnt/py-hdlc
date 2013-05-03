@@ -1,7 +1,0 @@
-import pytest
-
-
-
-@pytest.fixture(scope="module")
-def baseframe():
-    return HDLCBaseFrame()
