@@ -181,3 +181,45 @@ def test_is_IFrame1():
     genericframe = GenericFrame()
     genericframe.set_control(bytes([128]))
     assert genericframe.is_IFrame() is False
+
+
+def test_is_valid0():
+    """test for having valid 8bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is True
+
+
+def test_is_valid1():
+    """test for having valid 16bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is True
+
+
+def test_is_valid2():
+    """test for having valid 32bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is True
+
+
+def test_is_valid3():
+    """test for having invalid 8bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is False
+
+
+def test_is_valid4():
+    """test for having invalid 16bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is False
+
+
+def test_is_valid5():
+    """test for having invalid 32bit FCS field"""
+    genericframe = GenericFrame()
+    genericframe.parse(b'\x00')
+    assert genericframe.is_valid() is False
